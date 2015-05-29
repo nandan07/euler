@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import ipdb
-import helper
+#import ipdb
+#import helper
 
-n,testdata=helper.readData("input")
-#n=int(input())
+#n,testdata=helper.readData("input")
+n=int(input())
 num={}
 ten={}
 num['0']   =''
@@ -35,10 +35,9 @@ ten['7']   ='Seventy'
 ten['8']   ='Eighty'
 ten['9']   ='Ninety'
 
-for i in range(113):
-    #N=int(input())
+for i in range(n):
+    N=input()
     #N=testdata[i]
-    N=str(i)
     ans=''
     l=len(N)
     if l<2:
