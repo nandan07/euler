@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-#import ipdb
-#import helper
+import ipdb
+import helper
 
-#n,testdata=helper.readData("input")
-n=int(input())
+n,testdata=helper.readData("input")
+#n=int(input())
 num={}
 ten={}
 num['0']   =''
@@ -36,8 +36,8 @@ ten['8']   ='Eighty'
 ten['9']   ='Ninety'
 
 for i in range(n):
-    N=input()
-    #N=testdata[i]
+    #N=int(input())
+    N=testdata[i]
     ans=''
     l=len(N)
     if l<2:
@@ -53,34 +53,55 @@ for i in range(n):
         if l>2:
             ans=num[N[-3]]+" Hundred "+ans
             if l>3:
-                ans="Thousand "+ans
+                if int(N[-4])>0:
+                    ans="Thousand "+ans
+                if l==4:
+                    ans=num[N[-4]]+" "+ans
                 if l>4:
+                    if N[-4]=='0' and int(N[-5])>0:
+                        ans="Thousand "+ans
                     if int(N[-5])<2:
                         ans=num[str(int(N[-5:-3]))]+" "+ans
                     else:
                         ans=ten[N[-5]]+" "+num[N[-4]]+" "+ans
                     if l>5:
+                        if N[-4]=='0' and N[-5]=='0' and  int(N[-6])>0:
+                            ans="Thousand "+ans
                         ans=num[N[-6]]+" Hundred "+ans
                         if l>6:
-                            ans="Million "+ans
+                            if int(N[-7])>0:
+                                ans="Million "+ans
+                            if l==7:
+                                ans=num[N[-7]]+" "+ans
                             if l>7:
+                                if N[-7]=='0' and int(N[-8])>0:
+                                    ans="Million "+ans
                                 if int(N[-8])<2:
                                     ans=num[str(int(N[-8:-6]))]+" "+ans
                                 else:
                                     ans=ten[N[-8]]+" "+num[N[-7]]+" "+ans
                                 if l>8:
+                                    if N[-7]=='0' and N[-8]=='0' and  int(N[-9])>0:
+                                        ans="Thousand "+ans
                                     ans=num[N[-9]]+" Hundred "+ans
                                     if l>9:
-                                        ans="Billion "+ans
+                                        if int(N[-10])>0:
+                                            ans="Billion "+ans
+                                        if l==10:
+                                            ans=num[N[-10]]+" "+ans
                                         if l>10:
+                                            if N[-10]=='0' and int(N[-11])>0:
+                                                ans="Billion "+ans
                                             if int(N[-11])<2:
                                                 ans=num[str(int(N[-11:-9]))]+" "+ans
                                             else:
                                                 ans=ten[N[-11]]+" "+num[N[-10]]+" "+ans
                                             if l>11:
+                                                if N[-11]=='0' and N[-10]=='0':
+                                                    ans="Billion "+ans
                                                 ans=num[N[-12]]+" Hundred "+ans
 
 
 
-        print(ans)
+    print(ans)
     #ipdb.set_trace()
