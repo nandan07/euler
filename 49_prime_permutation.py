@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import ipdb
+#import ipdb
 import itertools
-import helper
+#import helper
 
 def isPrime(x):
     x=int(x)
@@ -21,28 +21,34 @@ def getdigitkey(n):
     digit = "".join(sorted(str(n), reverse=True))
     return int(digit)
 #onlt consider the concecutive numbers.. 
-def isAP(ar,l):
+def isAP(ar):
+    cd=ar[1]-ar[0]
+    for i in range(len(ar)-1):
+        if not (ar[i+1]-ar[i])==cd:
+            return False
+    return True
+
+
+def getAP(ar,l):
     cd={}
     for i in range(len(ar)-1):
-        key=ar[i+1]-ar[i]
-        cd.setdefault(key,set())
-        cd[key].add(ar[i])
-        cd[key].add(ar[i+1])
-    ipdb.set_trace()
+        for j in range(i+1,len(ar)):
+            key=ar[j]-ar[i]
+            cd.setdefault(key,set())
+            cd[key].add(ar[i])
+            cd[key].add(ar[j])
     for x in cd:
         if len(cd[x])==l:
-            return sorted(cd[x])
+            if isAP(sorted(cd[x])):
+                return sorted(cd[x])
+    return []
 
-
-
-n,testdata=helper.readData("input")
+#n,testdata=helper.readData("input")
 #n=int(testdata[x])
-N,K=testdata[0].split()
+N,K=input().split()
 N=int(N)
 K=int(K)
 prime={}
-ar=[1487, 1847, 4817, 4871, 7481, 7841, 8147, 8741]
-isAP(ar,K)
 for n in range(10,N+1):
     if isPrime(n):
         prime.setdefault(getdigitkey(n),set())
@@ -55,5 +61,9 @@ for key in prime:
                 prime[key].add(p)
     if len(prime[key])>=K:
        ar=sorted(prime[key])
-
-ipdb.set_trace()
+       out=getAP(ar,K)
+       if len(out)==K:
+           st=''
+           for x in out:
+               st+=str(x)
+           print(st)
