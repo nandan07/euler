@@ -1,41 +1,35 @@
 #!/usr/bin/python3
-import ipdb
-import helper
+#import ipdb
+#import helper
 
-
-def fact(x):
-    if (x==1):
-        return 1
-    fact=set()
+def factors_count(x):
     x=int(x)
-    i=2
-    for i in range(1,int(x/2)+1):
+    fact=set()
+    for i in range(1,int(x**.5)+1):
         if x%i==0:
+            f=x/i
             fact.add(i)
-            fact.add(int(x/i))
-        else:
-            i+=1
+            fact.add(f)
     return len(fact)
-def triangle_gen():
-    n=1
-    new=fact(n)
-    old=fact(n)
-    while(new<100):
-        t=n*(n+1)/2
-        new=fact(t)
-        if new>old:
-            print(t)
-        n+=1
-        old=fact(t)
-
-n,testdata=helper.readData("input")
-
-ipdb.set_trace()
-
-#n=int(input())
-for k in range(n):
-
-    print("test")    
 
 
-print("test")    
+def triangle_num(n):
+    return int((n*(n+1))/2)
+
+#n,testdata=helper.readData("input")
+n=int(input())
+
+for i in range(n):
+    N=int(input())
+    #N=int(testdata[i])
+    t=N-1
+    while(True):
+        c=factors_count(triangle_num(t))
+        if c>N:
+            print(triangle_num(t))
+            break
+        else:
+            t+=1
+            if c-N > 100:
+                t*=100
+#ipdb.set_trace()
