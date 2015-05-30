@@ -46,12 +46,14 @@ for i in range(n):
         else:
             print(num[N])
     else:
+        #ipdb.set_trace()
         if int(N[-2])<2:
             ans=num[str(int(N[-2:]))]+" "+ans
         else:
             ans=ten[N[-2]]+" "+num[N[-1]]+" "+ans
         if l>2:
-            ans=num[N[-3]]+" Hundred "+ans
+            if int(N[-3])>0:
+                ans=num[N[-3]]+" Hundred "+ans
             if l>3:
                 if int(N[-4])>0:
                     ans="Thousand "+ans
@@ -67,7 +69,8 @@ for i in range(n):
                     if l>5:
                         if N[-4]=='0' and N[-5]=='0' and  int(N[-6])>0:
                             ans="Thousand "+ans
-                        ans=num[N[-6]]+" Hundred "+ans
+                        if int(N[-6])>0:
+                            ans=num[N[-6]]+" Hundred "+ans
                         if l>6:
                             if int(N[-7])>0:
                                 ans="Million "+ans
@@ -83,7 +86,8 @@ for i in range(n):
                                 if l>8:
                                     if N[-7]=='0' and N[-8]=='0' and  int(N[-9])>0:
                                         ans="Thousand "+ans
-                                    ans=num[N[-9]]+" Hundred "+ans
+                                    if int(N[-9])>0:
+                                        ans=num[N[-9]]+" Hundred "+ans
                                     if l>9:
                                         if int(N[-10])>0:
                                             ans="Billion "+ans
@@ -99,7 +103,8 @@ for i in range(n):
                                             if l>11:
                                                 if N[-11]=='0' and N[-10]=='0':
                                                     ans="Billion "+ans
-                                                ans=num[N[-12]]+" Hundred "+ans
+                                                if int(N[-12])>0:
+                                                    ans=num[N[-12]]+" Hundred "+ans
 
 
 
