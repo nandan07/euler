@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import ipdb
-import helper
+#import ipdb
+#import helper
 
-n,testdata=helper.readData("input")
-#n=int(input())
+#n,testdata=helper.readData("input")
+n=int(input())
 num={}
 ten={}
 num['0']   =''
@@ -36,8 +36,8 @@ ten['8']   ='Eighty'
 ten['9']   ='Ninety'
 
 for i in range(n):
-    #N=int(input())
-    N=testdata[i]
+    N=input()
+    #N=testdata[i]
     ans=''
     l=len(N)
     if l<2:
@@ -106,7 +106,6 @@ for i in range(n):
                                                 if int(N[-12])>0:
                                                     ans=num[N[-12]]+" Hundred "+ans
 
-
-
-    print(ans)
+    ans_ar=ans.split()
+    print(" ".join(ans_ar))
     #ipdb.set_trace()
