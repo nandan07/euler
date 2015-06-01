@@ -22,13 +22,12 @@ def isPandigit(x):
 #n,testdata=helper.readData("input")
 n=int(input())
 for x in range(n):
-    ans=-1
+    ans=[]
     #N=int(testdata[x])
     N=int(input())
-    for i in range(N,2,-1):
+    for i in range(2,N):
         if isPandigit(str(i)):
             if isPrime(str(i)):
-                ans=i
-                break
-    print(ans)
+                ans.append(str(i))
+    print("".join(ans))
 
