@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-import ipdb
-import helper
-import itertools
+#import ipdb
+#import helper
+#import itertools
 import math
 
 
 def digit_factorial_sum(n):
-    ipdb.set_trace()
     s=str(n)
     su=0
     for d in s:
@@ -15,28 +14,54 @@ def digit_factorial_sum(n):
 
 
 #n,testdata=helper.readData("input")
-#n=int(input())
+n=int(input())
 testdata=[]
-end=1000000
-#for i in range(n):
-#    testdata.append(input())
-#    if end <int(testdata[-1].split()[0]):
-#        end=int(testdata[-1].split()[0])
+end=0
+length=0
+for i in range(n):
+    testdata.append(input())
+    N,L=testdata[-1].split()
+    N=int(N)
+    L=int(L)
+    if length <L:
+        length=L
+    if end<N:
+        end=N
+
+
 digit_ser={}
 for key in range(end+1):
     i=key
+    #if i==221:
+        #ipdb.set_trace()
     digit_ser.setdefault(key,[])
-    sr=set()
-    sr.add(i)
-    while(len(sr)<60):
+    sr=[]
+    sr.append(i)
+    while(len(sr)<length+1):
+        #if i==221:
+            #ipdb.set_trace()
         next_num=digit_factorial_sum(i)
         if next_num in sr:
             break
         else:
-            sr.add(next_num)
+            sr.append(next_num)
             i=next_num
     digit_ser[key]=sr
-ipdb.set_trace()
+
+for x in testdata:
+    N,L=x.split()
+    N=int(N)
+    L=int(L)
+    ans=[]
+    for x in range(N+1):
+        if len(digit_ser[x])==L:
+                ans.append(str(x))
+    if len(ans)>0:
+        print(" ".join(ans))
+    else:
+        print('-1')
+
+
 #for i in range(n):
 #    N,L=testdata[i].split()
 #    N=int(N)
