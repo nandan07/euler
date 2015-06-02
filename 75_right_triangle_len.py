@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import ipdb
-import helper
+#import ipdb
+#import helper
 import itertools
 import math
 
