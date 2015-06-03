@@ -5,8 +5,8 @@ import helper
 
 
 power=set()
-#n=int(input())
-testdata=5
+n=int(input())
+testdata=n
 for i in range(2,int(testdata)+1):
     for j in range(2,int(testdata)+1):
         power.add(i**j)

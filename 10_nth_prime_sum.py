@@ -1,41 +1,53 @@
 #!/usr/bin/python3
+#import ipdb
+#import helper
+#import time
 
 def isPrime(x):
     x=int(x)
+    if x<2:
+        return False
     for i in range(2,int(x**.5)+1):
         if x%i ==0 :
             return False
     return True
 
-def getprime(p):
-    if isPrime(p):
-        return p
-    else:
-        while(not isPrime(p)):
-            p-=1
-        return p
+
+def get_primes(n):
+    num=set()
+    prime=[]
+    for i in range(2,n+1):
+        num.add(i)
+    l=len(num)
+    while(l>0):
+        p=num.pop()
+        prime.append(p)
+        i=2
+        while(i*p<=n+1):
+            if i*p in num:
+                num.remove(i*p)
+            i+=1
+        l=len(num)
+    return prime
 
 
-
-data=[]
-num=2
-for i in range(1,100001):
-    while(not isPrime(num)):
-        num+=1
-        if num>1000000:
-            break
-    data.append(num)
-    num+=1
-    if num>1000000:
-        break
 n=int(input())
-
-for k in range(n):
-    testdata=input()
-    i=int(testdata)
-    p=getprime(i)
-    ind=data.index(p)
-    su=0
-    for i in range(ind+1):
-        su+=data[i]
-    print(su)
+testdata=[]
+#n,data=helper.readData("input")
+max_n=0
+for i in range(n):
+    x=int(input())
+    if x<=max_n:
+        testdata.append(x)
+    else:
+        max_n=x
+        testdata.append(x)
+prime=get_primes(max_n)
+for x in testdata:
+    ans=0
+    for p in prime:
+        if p<=x:
+            ans+=p
+        else:
+            break
+    print(ans)
