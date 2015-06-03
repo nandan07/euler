@@ -15,13 +15,15 @@ def isPrime(x):
 
 def get_primes(n):
     num=set()
-    prime=[]
+    prime={}
+    su=0
     for i in range(2,n+1):
         num.add(i)
     l=len(num)
     while(l>0):
         p=num.pop()
-        prime.append(p)
+        su+=p
+        prime[p]=su
         i=2
         while(i*p<=n+1):
             if i*p in num:
@@ -29,7 +31,6 @@ def get_primes(n):
             i+=1
         l=len(num)
     return prime
-
 
 n=int(input())
 testdata=[]
@@ -45,9 +46,9 @@ for i in range(n):
 prime=get_primes(max_n)
 for x in testdata:
     ans=0
-    for p in prime:
-        if p<=x:
-            ans+=p
-        else:
+    large=0
+    for p in range(x,2,-1):
+        if p in prime:
+            ans=prime[p]
             break
     print(ans)
