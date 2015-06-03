@@ -9,26 +9,38 @@ def isPrime(x):
             return False
     return True
 
+def get_primes(n):
+    num=set()
+    prime=set()
+    for i in range(2,n+1):
+        num.add(i)
+    l=len(num)
+    while(l>0):
+        p=num.pop()
+        prime.add(p)
+        i=2
+        while(i*p<=n+1):
+            if i*p in num:
+                num.remove(i*p)
+            i+=1
+        l=len(num)
+    return prime
+
+
 def prime_factors(x):
     x=int(x)
     fact=set()
-    if x==2:
-        fact.add(2)
-        return fact
-    for i in range(2,int(x**.5)+2):
-        if x%i==0:
-            f=x/i
-            if isPrime(i):
-                fact.add(i)
-            if isPrime(f):
-                fact.add(f)
+    prime=get_primes(x)
+    for p in get_primes(int(x**0.5)+1):
+        if x%p==0:
+            w=int(x/p)
+            fact.add(p)
+            if w in prime:
+                fact.add(w)
     return len(fact)
 
 
-n,data=helper.readData("input")
-#n=int(input())
-#N,K=input().split()
-N,K=data[0].split()
+N,K="20 2".split()
 N=int(N)
 K=int(K)
 n=2
@@ -44,4 +56,4 @@ while(n<N+1):
     else:
         n+=p+1
 
-#ipdb.set_trace()
+ipdb.set_trace()
