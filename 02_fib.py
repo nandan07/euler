@@ -1,15 +1,6 @@
 #!/usr/bin/python3
 import ipdb
 
-#def readData(filename):
-#		data=open(filename)
-#		testData=[]
-#		n=data.readline()[0:-1]
-####		ipdb.set_trace()
-#		nn=int(n)+1
-#		for line in range(1,nn):
-#				testData.append(data.readline()[0:-1])
-#		return testData
 
 num=int(input())
 for i in range(num):
