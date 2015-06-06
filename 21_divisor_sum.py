@@ -23,18 +23,13 @@ def f_sum(x):
     return su
 n=int(input())
 #n,testdata=helper.readData("input")
-
+num=[220, 284, 1184, 1210, 2620, 2924, 5020, 5564, 6232, 6368, 10744, 10856, 12285, 14595, 17296, 18416, 63020, 66928, 66992, 67095, 69615, 71145, 76084, 79750, 87633, 88730]
 for i in range(n):
-    num=set()
-    #xx=int(testdata[i])
-    xx=int(input())
-    for x in range(1,xx):
-        a=f_sum(x)
-        if x==f_sum(a) and a!=x :
-            num.add(x)
-    su=0
-    for k in num:
-        su+=k
-    print(su)
-#ipdb.set_trace()
-#print("done")
+    N=int(input())
+    ans=0
+    for x in num:
+        if x<N:
+            ans+=x
+        else:
+            break
+    print(ans)

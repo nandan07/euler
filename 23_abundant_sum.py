@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import ipdb
-import helper
+#import ipdb
+#import helper
 
 def factors_sum(x):
     x=int(x)
@@ -16,34 +16,31 @@ def factors_sum(x):
         su+=f
     return int(su)
 
-n,testdata=helper.readData("input")
-#n=int(input())
-abundant=[]
-ans=[]
-for i in range(100):
-    N=i
-    #N=int(testdata[i])
+abundant_ar=[]
+abundant_set=set()
+for i in range(1,28125):
+    if factors_sum(i)>i:
+        abundant_set.add(i)
+        abundant_ar.append(i)
+n=int(input())
+#n,testdata=helper.readData("input")
+for i in range(n):
+    N=int(input())
+    find=False
     if N>28123:
         print("YES")
+        continue
+    for j in abundant_ar:
+        if j<N:
+            if N-j in abundant_set:
+                find=True
+                break
+        else:
+            break
+    if find:
+        print("YES")
     else:
-        if len(abundant)<1:
-            a=12
-            for a in range(12,28125):
-                if factors_sum(a)>a:
-                    abundant.append(a)
-        possible=False
-        for x in range(len(abundant)-1):
-            if abundant[x]>N:
-                break
-            for y in range(x,len(abundant)):
-                if abundant[y]>N:
-                    break
-                if abundant[x]+abundant[y]==N:
-                    possible=True
-                    break
-            if possible:
-                break
-        if possible:
-       #     print("YES")
-            ans.append(N)
-ipdb.set_trace()
+        print("NO")
+
+
+
