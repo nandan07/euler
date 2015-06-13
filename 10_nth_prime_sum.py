@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#import ipdb
+import ipdb
 #import helper
 #import time
 
@@ -29,9 +29,10 @@ def get_primes(n):
             if i*p in num:
                 num.remove(i*p)
             i+=1
-        l=len(num)
     return prime
 
+
+ipdb.set_trace()
 n=int(input())
 testdata=[]
 #n,data=helper.readData("input")
