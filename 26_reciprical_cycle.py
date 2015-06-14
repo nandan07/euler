@@ -11,6 +11,6 @@ def cycle_len(n):
         else:
             continue
     return 0
-
+cycle_len(7)
 ipdb.set_trace()
 
