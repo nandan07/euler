@@ -7,7 +7,7 @@
 using namespace std;
 		long long sum_sq(long long n){
 				long long MOD=1000000007;
-				return ((n*(2*n+1)*(2*n-1))/3);
+				return ((n%MOD*(2*n+1)%MOD*(2*n-1)%MOD*(1/3))/3);
 		}
 
 		long long sum_even(long long n){
@@ -24,4 +24,4 @@ using namespace std;
 						printf("%lld %lld\n",MOD,(4*sum_sq(N)-6*sum_even(N)-3)%1000000007);
 				}
 				return 0;
-}
+:}
